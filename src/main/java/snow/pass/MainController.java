@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Controller // This means that this class is a Controller
@@ -24,4 +25,12 @@ public class MainController {
     // This returns a JSON or XML with the users
     return resortRepository.findAll();
   }
+
+  @GetMapping("/resorts/{id}")
+  public @ResponseBody Resort getResort(@PathVariable String id) {
+    return resortRepository.findById(id)
+      .orElseThrow(() -> new ResortNotFoundException(id));
+    
+  }
 }
+
