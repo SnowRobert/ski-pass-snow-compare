@@ -1,10 +1,13 @@
-package snow.pass;
+package snow.pass.resorts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import snow.pass.WeatherSaver;
+
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -32,5 +35,15 @@ public class MainController {
       .orElseThrow(() -> new ResortNotFoundException(id));
     
   }
+
+  @GetMapping(path="/test")
+  public @ResponseBody String getTest() {
+    // This returns a JSON or XML with the users
+    Iterable<Resort> resortList = resortRepository.findAll();
+    WeatherSaver w = new WeatherSaver();
+    w.checkResortList(resortList);
+    return "hi";
+  }
+
 }
 

@@ -1,4 +1,4 @@
-package snow.pass;
+package snow.pass.resorts;
 
 class ResortNotFoundException extends RuntimeException {
 

@@ -1,8 +1,6 @@
-package snow.pass;
+package snow.pass.resorts;
 
 import org.springframework.data.repository.CrudRepository;
-
-import snow.pass.Resort;
 
 public interface ResortRepository extends CrudRepository<Resort, String> {
     

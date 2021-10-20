@@ -1,4 +1,4 @@
-package snow.pass;
+package snow.pass.resorts;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

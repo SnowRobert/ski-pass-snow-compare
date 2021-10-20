@@ -1,4 +1,4 @@
-package snow.pass;
+package snow.pass.resorts;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -34,7 +34,7 @@ public class Resort {
         return pass;
     }
 
-    public float getlatitude() {
+    public float getLatitude() {
         return latitude;
     }
 

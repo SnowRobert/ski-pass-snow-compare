@@ -1,4 +1,4 @@
-package snow.pass;
+package snow.pass.weather;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
