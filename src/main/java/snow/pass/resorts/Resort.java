@@ -14,9 +14,9 @@ public class Resort {
 
     private String pass;
 
-    private float latitude;
+    private double latitude;
 
-    private float longitude;
+    private double longitude;
 
     public String getId() {
         return id;
@@ -34,11 +34,11 @@ public class Resort {
         return pass;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
