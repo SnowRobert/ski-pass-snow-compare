@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class WeatherController {
     
     @GetMapping(path="/weather")
-    public @ResponseBody Weather getWeather() {
+    public @ResponseBody WeatherData getWeather() {
         WeatherService w = new WeatherService();
         return w.getWeather(47.746, -121.089);
     }

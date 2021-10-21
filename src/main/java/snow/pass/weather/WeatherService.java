@@ -11,7 +11,7 @@ public class WeatherService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public Weather getWeather(double longitude, double latitude) {
-        return this.restTemplate.getForObject("https://api.weatherbit.io/v2.0/forecast/daily?&lat={latitude}&lon={longitude}&key=" + dotenv.get("API_KEY"), Weather.class, latitude, longitude);
+    public WeatherData getWeather(double longitude, double latitude) {
+        return this.restTemplate.getForObject("https://api.weatherbit.io/v2.0/forecast/daily?&lat={latitude}&lon={longitude}&key=" + dotenv.get("API_KEY"), WeatherData.class, latitude, longitude);
     }
 }
