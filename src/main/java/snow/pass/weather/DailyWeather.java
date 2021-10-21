@@ -82,12 +82,11 @@ public class DailyWeather {
     this.wind_gust_spd = wind_gust_spd;
   }
 
-  public WeatherType getWeather() {
-    return weather_type;
-  }
-
   public void setWeather(WeatherType weather_type) {
     this.weather_type = weather_type;
   }
 
+  public int getWeather_code() {
+    return this.weather_type.getCode();
+  }
 }
