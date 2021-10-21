@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import snow.pass.weather.WeatherSaver;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -35,15 +34,6 @@ public class ResortController {
       .orElseThrow(() -> new ResortNotFoundException(id));
     
   }
-
-  // @GetMapping(path="/test")
-  // public @ResponseBody String getTest() {
-  //   // This returns a JSON or XML with the users
-  //   Iterable<Resort> resortList = resortRepository.findAll();
-  //   WeatherSaver w = new WeatherSaver();
-  //   w.checkResortList(resortList);
-  //   return "hi";
-  // }
 
 }
 
