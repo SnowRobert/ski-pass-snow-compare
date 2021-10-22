@@ -1,12 +1,10 @@
 package snow.pass.weather;
 
 import java.util.Optional;
-
+import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,19 +20,14 @@ public class WeatherController {
 
     @Autowired
     private ResortRepository resortRepository;
-    
-    @GetMapping(path="/weather")
-    public @ResponseBody WeatherData getWeather() {
-        WeatherService w = new WeatherService();
-        return w.getWeather(-121.089, 47.746);
-    }
 
-    @GetMapping(path="/weather/{id}")
-    public @ResponseBody String addResortWeather(@PathVariable String id) {
+    @GetMapping(path="/make-weather")
+    public @ResponseBody String addResortWeather() {
         WeatherService weatherService = new WeatherService();
 
-        Optional<Resort> optionalResort = resortRepository.findById(id);
-        optionalResort.ifPresent(resort -> {
+        Iterable<Resort> resorts = resortRepository.findAll();
+        for (Resort resort : resorts) {
+
             WeatherData weatherData = weatherService.getWeather(resort.getLongitude(), resort.getLatitude());
             DailyWeather[] dailyWeather = weatherData.getData();
             
@@ -51,7 +44,12 @@ public class WeatherController {
 
                 weatherRepository.save(weather);
             }
-        });
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                System.err.format("IOException: %s%n", e);
+            }
+        }
         return "Resort weather saved";
     }
 }
