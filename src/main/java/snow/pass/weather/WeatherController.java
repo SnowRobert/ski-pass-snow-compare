@@ -26,7 +26,7 @@ public class WeatherController {
     @GetMapping(path="/weather")
     public @ResponseBody WeatherData getWeather() {
         WeatherService w = new WeatherService();
-        return w.getWeather(47.746, -121.089);
+        return w.getWeather(-121.089, 47.746);
     }
 
     @GetMapping(path="/weather/{id}")
@@ -35,20 +35,14 @@ public class WeatherController {
 
         Optional<Resort> optionalResort = resortRepository.findById(id);
         optionalResort.ifPresent(resort -> {
-            WeatherData weatherData = weatherService.getWeather(resort.getLatitude(), resort.getLongitude());
+            WeatherData weatherData = weatherService.getWeather(resort.getLongitude(), resort.getLatitude());
             DailyWeather dailyWeather = weatherData.getData()[0];
-            System.out.println("#@$!@$!@#$!@$!@#$@!$!@$@#$!@#$!@#$!@#$@#$!$#$hii!#@$!@#$!@#$");
-            System.out.println(dailyWeather.getTemp());
-            System.out.println("#@$!@$!@#$!@$!@#$@!$!@$@#$!@#$!@#$!@#$@#$!$#$hii!#@$!@#$!@#$");
-
+            
             Weather weather = new Weather();   
             weather.setResort_id(resort.getId());
             weather.setWeather_code(dailyWeather.getWeather_code());
             weather.setDatetime(dailyWeather.getDatetime());
             weather.setTemp(dailyWeather.getTemp());
-            System.out.println("#@$!@$!@#$!@$!@#$@!$!@$@#$!@#$!@#$!@#$@#$!$#$hii!#@$!@#$!@#$");
-            System.out.println(weather.getTemp());
-            System.out.println("#@$!@$!@#$!@$!@#$@!$!@$@#$!@#$!@#$!@#$@#$!$#$hii!#@$!@#$!@#$");
             weather.setMin_temp(dailyWeather.getMin_temp());
             weather.setHigh_temp(dailyWeather.getHigh_temp());
             weather.setSnow(dailyWeather.getSnow());

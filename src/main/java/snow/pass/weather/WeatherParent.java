@@ -1,5 +1,8 @@
 package snow.pass.weather;
 
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 abstract public class WeatherParent {
     private String datetime;
     private double temp;
