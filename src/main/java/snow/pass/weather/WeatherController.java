@@ -1,5 +1,9 @@
 package snow.pass.weather;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,41 +60,16 @@ public class WeatherController {
     }
 
     @GetMapping(path="/weather/{id}")
-    public @ResponseBody Weather addResortWeather(@PathVariable String id) {
-        String dateId = id + "-" + java.time.LocalDate.now();
-        return weatherRepository.findById(dateId)
-            .orElseThrow(() -> new RuntimeException(id));
+    public @ResponseBody ArrayList<Weather> addResortWeather(@PathVariable String id) {
+        ArrayList<Weather> weatherList = new ArrayList<Weather>();
+        Calendar cal = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        for (int i = 0; i < 7; i++) {
+            String dateId = id + "-" + dateFormat.format(cal.getTime());
+            Optional<Weather> optionalWeather = weatherRepository.findById(dateId);
+            optionalWeather.ifPresent(weather -> weatherList.add(weather));
+            cal.add(Calendar.DATE, +1);
+        }
+        return weatherList;
     }
-
-        // @GetMapping(path="/weather")
-    // public @ResponseBody WeatherData getWeather() {
-    //     WeatherService w = new WeatherService();
-    //     return w.getWeather(-121.089, 47.746);
-    // }
-
-    // @GetMapping(path="/weather/{id}")
-    // public @ResponseBody String addResortWeather(@PathVariable String id) {
-    //     WeatherService weatherService = new WeatherService();
-
-    //     Optional<Resort> optionalResort = resortRepository.findById(id);
-    //     optionalResort.ifPresent(resort -> {
-    //         WeatherData weatherData = weatherService.getWeather(resort.getLongitude(), resort.getLatitude());
-    //         DailyWeather[] dailyWeather = weatherData.getData();
-            
-    //         for (DailyWeather w : dailyWeather) {
-    //             Weather weather = new Weather(resort.getId(), w.getDatetime());   
-    //             weather.setWeather_code(w.getWeather_code());
-    //             weather.setTemp(w.getTemp());
-    //             weather.setMin_temp(w.getMin_temp());
-    //             weather.setHigh_temp(w.getHigh_temp());
-    //             weather.setSnow(w.getSnow());
-    //             weather.setSnow_depth(w.getSnow_depth());
-    //             weather.setPop(w.getPop());
-    //             weather.setWind_gust_spd(w.getWind_gust_spd());
-
-    //             weatherRepository.save(weather);
-    //         }
-    //     });
-    //     return "Resort weather saved";
-    // }
 }
