@@ -39,10 +39,8 @@ public class WeatherController {
             DailyWeather[] dailyWeather = weatherData.getData();
             
             for (DailyWeather w : dailyWeather) {
-                Weather weather = new Weather();   
-                weather.setResort_id(resort.getId());
+                Weather weather = new Weather(resort.getId(), w.getDatetime());   
                 weather.setWeather_code(w.getWeather_code());
-                weather.setDatetime(w.getDatetime());
                 weather.setTemp(w.getTemp());
                 weather.setMin_temp(w.getMin_temp());
                 weather.setHigh_temp(w.getHigh_temp());
