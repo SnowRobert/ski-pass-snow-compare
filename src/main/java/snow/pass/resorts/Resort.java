@@ -7,15 +7,10 @@ import javax.persistence.Id;
 public class Resort {
     @Id
     private String id;
-
     private String name;
-
     private String state;
-
     private String pass;
-
     private double latitude;
-
     private double longitude;
 
     public String getId() {
