@@ -36,21 +36,23 @@ public class WeatherController {
         Optional<Resort> optionalResort = resortRepository.findById(id);
         optionalResort.ifPresent(resort -> {
             WeatherData weatherData = weatherService.getWeather(resort.getLongitude(), resort.getLatitude());
-            DailyWeather dailyWeather = weatherData.getData()[0];
+            DailyWeather[] dailyWeather = weatherData.getData();
             
-            Weather weather = new Weather();   
-            weather.setResort_id(resort.getId());
-            weather.setWeather_code(dailyWeather.getWeather_code());
-            weather.setDatetime(dailyWeather.getDatetime());
-            weather.setTemp(dailyWeather.getTemp());
-            weather.setMin_temp(dailyWeather.getMin_temp());
-            weather.setHigh_temp(dailyWeather.getHigh_temp());
-            weather.setSnow(dailyWeather.getSnow());
-            weather.setSnow_depth(dailyWeather.getSnow_depth());
-            weather.setPop(dailyWeather.getPop());
-            weather.setWind_gust_spd(dailyWeather.getWind_gust_spd());
+            for (DailyWeather w : dailyWeather) {
+                Weather weather = new Weather();   
+                weather.setResort_id(resort.getId());
+                weather.setWeather_code(w.getWeather_code());
+                weather.setDatetime(w.getDatetime());
+                weather.setTemp(w.getTemp());
+                weather.setMin_temp(w.getMin_temp());
+                weather.setHigh_temp(w.getHigh_temp());
+                weather.setSnow(w.getSnow());
+                weather.setSnow_depth(w.getSnow_depth());
+                weather.setPop(w.getPop());
+                weather.setWind_gust_spd(w.getWind_gust_spd());
 
-            weatherRepository.save(weather);
+                weatherRepository.save(weather);
+            }
         });
         return "Resort weather saved";
     }
