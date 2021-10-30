@@ -1,7 +1,9 @@
-package snow.pass.weather;
+package snow.pass.service;
 
 import org.springframework.stereotype.Service;
 import io.github.cdimascio.dotenv.Dotenv;
+import snow.pass.model.WeatherData;
+
 import org.springframework.web.client.RestTemplate;
 
 

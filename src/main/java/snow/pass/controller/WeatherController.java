@@ -1,4 +1,4 @@
-package snow.pass.weather;
+package snow.pass.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import snow.pass.resorts.Resort;
-import snow.pass.resorts.ResortRepository;
+import snow.pass.model.DailyWeather;
+import snow.pass.model.Resort;
+import snow.pass.model.Weather;
+import snow.pass.model.WeatherData;
+import snow.pass.repository.ResortRepository;
+import snow.pass.repository.WeatherRepository;
+import snow.pass.service.WeatherService;
 
 
 @Controller

@@ -1,4 +1,4 @@
-package snow.pass.resorts;
+package snow.pass.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
