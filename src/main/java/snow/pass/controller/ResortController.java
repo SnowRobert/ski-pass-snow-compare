@@ -27,7 +27,7 @@ public class ResortController {
 
   @GetMapping(path="/resorts")
   public @ResponseBody Iterable<Resort> getAllResorts() {
-    // This returns a JSON or XML with the users
+    // This returns a JSON or XML with the resorts
     return resortRepository.findAll();
   }
 
