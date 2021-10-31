@@ -34,5 +34,4 @@ build/
 
 /src/main/resources/
 /src/main/resources/application.properties
-/src/main/resources/quartz.properties
 /src/main/resources/.env
