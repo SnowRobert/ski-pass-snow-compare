@@ -1,7 +1,7 @@
 name: Awaken Sleeping App
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '15,30,45 5 * * *'
 jobs:
   build:
     name: GET Request to API
