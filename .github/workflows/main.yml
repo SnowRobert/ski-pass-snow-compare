@@ -1,0 +1,12 @@
+name: Awaken Sleeping App
+on:
+  schedule:
+    # Run at 0815 daily
+    - cron: '11 16 * * *'
+jobs:
+  build:
+    name: GET Request to API
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl request
+        run: curl https://ski-pass-snow-compare-api.herokuapp.com/api
