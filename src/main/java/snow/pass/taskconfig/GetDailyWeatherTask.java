@@ -8,7 +8,9 @@ import snow.pass.model.DailyWeather;
 import snow.pass.model.Resort;
 import snow.pass.model.Weather;
 import snow.pass.model.WeatherData;
+import snow.pass.model.WeatherRecord;
 import snow.pass.repository.ResortRepository;
+import snow.pass.repository.WeatherRecordRepository;
 import snow.pass.repository.WeatherRepository;
 import snow.pass.service.WeatherService;
 
@@ -16,6 +18,9 @@ import snow.pass.service.WeatherService;
 public class GetDailyWeatherTask {
     @Autowired
     private WeatherRepository weatherRepository;
+
+    @Autowired
+    private WeatherRecordRepository weatherRecordRepository;
 
     @Autowired
     private ResortRepository resortRepository;
@@ -31,6 +36,12 @@ public class GetDailyWeatherTask {
 
             WeatherData weatherData = weatherService.getWeather(resort.getLongitude(), resort.getLatitude());
             DailyWeather[] dailyWeather = weatherData.getData();
+
+            WeatherRecord weatherRecord = new WeatherRecord(resort.getId(), dailyWeather[0].getDatetime(), dailyWeather[0].getSnow(),
+                dailyWeather[1].getSnow(), dailyWeather[2].getSnow(), dailyWeather[4].getSnow(), dailyWeather[6].getSnow(),
+                dailyWeather[9].getSnow(), dailyWeather[15].getSnow());
+
+            weatherRecordRepository.save(weatherRecord);
             
             for (DailyWeather w : dailyWeather) {
                 Weather weather = new Weather(resort.getId(), w.getDatetime());   
