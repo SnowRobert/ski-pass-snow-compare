@@ -24,6 +24,7 @@ public class WeatherRecord {
         this.resort_id = resort_id;
         this.setDatetime(datetime);
         this.id = resort_id + "-" + datetime;
+        this.one_day_snow = one_day_snow;
         this.two_day_snow = two_day_snow;
         this.three_day_snow = three_day_snow;
         this.five_day_snow = five_day_snow;

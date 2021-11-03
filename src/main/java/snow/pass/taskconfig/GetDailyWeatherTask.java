@@ -25,7 +25,7 @@ public class GetDailyWeatherTask {
     @Autowired
     private ResortRepository resortRepository;
 
-    @Scheduled(cron = "0 0 6 * * *",  zone = "UTC")
+    @Scheduled(cron = "0 0 7 * * *",  zone = "UTC")
     public void getDailyWeatherTask() {
         System.out.println("Saving Daily Weather");
 
