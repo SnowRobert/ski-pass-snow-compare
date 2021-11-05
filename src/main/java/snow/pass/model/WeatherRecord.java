@@ -7,6 +7,7 @@ import javax.persistence.Id;
 public class WeatherRecord {
     @Id
     private String id;
+    
     private String resort_id;
     private String datetime;
     private double one_day_snow;
@@ -16,6 +17,7 @@ public class WeatherRecord {
     private double seven_day_snow;
     private double ten_day_snow;
     private double sixteen_day_snow;
+    private double actual_snow_inches = -1;
 
     public WeatherRecord() {}
 
@@ -103,5 +105,13 @@ public class WeatherRecord {
 
     public void setSixteen_day_snow(double snow) {
         this.sixteen_day_snow = snow;
+    }
+
+    public double getActual_snow_inches() {
+        return this.actual_snow_inches;
+    }
+
+    public void setActual_snow_inches(double snow) {
+        this.actual_snow_inches = snow;
     }
 }

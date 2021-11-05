@@ -12,9 +12,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import snow.pass.model.ActualSnowfall;
+import snow.pass.model.ActualSnowfallData;
 import snow.pass.model.DailyWeather;
 import snow.pass.model.Resort;
 import snow.pass.model.Weather;
@@ -53,8 +57,7 @@ public class WeatherController {
                 dailyWeather[9].getSnow(), dailyWeather[15].getSnow());
 
             weatherRecordRepository.save(weatherRecord);
-            // stop after the 7th day?
-            // delete weather date from previous day?
+      
             for (DailyWeather w : dailyWeather) {
                 Weather weather = new Weather(resort.getId(), w.getDatetime());   
                 weather.setWeather_code(w.getWeather_code());
@@ -90,4 +93,19 @@ public class WeatherController {
         }
         return weatherList;
     }
+
+    @PostMapping(value = "/weather/add-actual-snowfall", consumes = "application/json", produces = "application/json")
+        public String createPerson(@RequestBody ActualSnowfallData snowfallData) {
+            ActualSnowfall[] actualSnowfall = snowfallData.getData();
+            for (ActualSnowfall snowfall : actualSnowfall) {
+                String resortId = snowfall.getName() + "-" + snowfall.getDate_snowfall();
+                Optional<WeatherRecord> optionalRecord = weatherRecordRepository.findById(resortId);
+                optionalRecord.ifPresent(record -> {
+                    record.setActual_snow_inches(snowfall.getSnow());
+                    weatherRecordRepository.save(record);
+                });
+            }
+            return "Snowfall Data Saved";
+        }
+
 }
