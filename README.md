@@ -16,7 +16,7 @@ https://github.com/mrhaffner/ski-pass-snow-compare-front
 
 - Become more proficient with Typescript
 - Explore NextJS - the fantastic React framework 
-- Learn Java (I started learning Java 3 days before started this project!)
+- Learn Java (I started learning Java 3 days before starting this project!)
 - Explore Object-Oriented Design (Why I chose to learn Java)
 
 ## Design:
@@ -32,8 +32,8 @@ This project takes advantage of several free tier services:
 Github Actions are used to create a daily update pipeline:
 
 1. Github Actions webook wakes up the sleeping Spring Boot API
-2. Spring Boot App gets updated forecast information from the weather API
-3. Updated forecast information is save to the PostrgeSQL databse
+2. Spring Boot API gets updated forecast information from the weather API
+3. Updated forecast information is saved to the PostrgeSQL database
 4. Github Actions webook triggers the Next JS app to do a build
 5. Next JS app fetches updated data from the Spring Boot API and completes the build
 
@@ -48,3 +48,9 @@ Github Actions are used to create a daily update pipeline:
 - [Weatherbit](https://www.weatherbit.io/) for the weather data.
 - Red Stapler for the great tutorial on making a snow effect background.
 - Steve Schoger @ HeroPatterns for the excellent background pattern for the mobile footer. I am also a big fan of his book, Refactoring UI.
+
+## Potential improvements:
+
+- Testing
+- Proper Documentation
+- Better Java style
