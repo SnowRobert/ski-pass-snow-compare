@@ -15,9 +15,9 @@ https://github.com/mrhaffner/ski-pass-snow-compare-front
 ## Purpose:
 
 - Become more proficient with Typescript
-- Explore NextJS - the fantastic React framework 
+- Explore NextJS
 - Learn Java (I started learning Java 3 days before starting this project!)
-- Explore Object-Oriented Design (Why I chose to learn Java)
+- Explore Object-Oriented Programming (Why I chose to learn Java)
 
 ## Design:
 
