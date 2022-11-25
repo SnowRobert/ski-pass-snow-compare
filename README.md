@@ -6,7 +6,9 @@
 
 ## Visit the live webpage:
 
-https://ski-pass-snow-compare-front.vercel.app/
+~~https://ski-pass-snow-compare-front.vercel.app/~~
+
+Unfortunately, Heroku no longers a free tier, so the back end is non-functional.
 
 ## Visit the front end's repository:
 
